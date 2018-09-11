@@ -1,0 +1,94 @@
+{% extends '_base.html' %}
+
+{% block extra_css %}
+{{ CSS.push('less/factlist.less') }}
+{{ CSS.render('css/factlist.min.css') }}
+{% endblock extra_css %}
+
+{% block content %}
+<div class="content">
+    <div class="poster-wrapper">
+        <div class="poster quote poster-news sixteen-by-nine">
+            <h2 class="kicker-wrapper"><span class="kicker">Desdobramentos</span></h2>
+            <blockquote>
+                <p>Comece sua lista por aqui</p>
+            </blockquote>
+
+            <p class="timestamp"></p>
+
+            <p class="logo-wrapper" width="100px"></p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="form controls col-md-12">
+                <div class="controls-wrapper">
+                    <div class="form-group">
+                        <label for="kicker">
+                            Headline
+                            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" data-html="true" title="e.g. <em>O que se sabe sobre acontecimentos em andamento?</em>"></i>
+                        </label>
+                        <input id="kicker" class="form-control" name="kicker" type="text" placeholder="Coloque um bom chapéu">
+                    </div>
+                    <div class="form-group">
+                        <label for="fontsize">Tamanho da fonte</label>
+                        <input id="fontsize" name="fontsize" type="range" min="24" max="66" value="32">
+                    </div>
+                    <div class="form-group">
+                        <label for="theme">Selo</label>
+                        <div id="theme" class="btn-group-vertical">
+                            <button id="theme1" class="btn btn-primary active">Falso</button>
+                            <button id="theme2" class="btn btn-primary">Exagerado</button>
+                            <button id="theme3" class="btn btn-primary">Impreciso</button>
+                            <button id="theme4" class="btn btn-primary">Contraditório</button>
+                            <button id="theme5" class="btn btn-primary">Insustentável</button>
+                            <button id="theme6" class="btn btn-primary">Distorcido</button>
+                            <button id="theme7" class="btn btn-primary">Verdadeiro</button>
+                            <button id="theme8" class="btn btn-primary"><strong>SEM SELO</strong></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="aspect-ratio">Aspect ratio</label>
+                        <div id="aspect-ratio" class="btn-group">
+                            <button id="sixteen-by-nine" class="btn btn-primary active">Horizontal <i class="fa fa-twitter"></i></button>
+                            <button id="square" class="btn btn-primary">Quadrado</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="timestamp-toggle">Mostrar horário de atualização</label>
+                        <div id="timestamp-toggle" class="btn-group">
+                            <button id="show-timestamp" class="btn btn-primary active">Mostrar</button>
+                            <button id="hide-timestamp" class="btn btn-primary">Esconder</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button id="save" class="btn btn-lg btn-primary">Exportar imagem</button>
+                    </div>
+                    <div class="form-group">
+                        <p class="warning">Se sua lista for muito grande, você não conseguirá salvar a imagem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jquery %}
+{% if DEPLOYMENT_TARGET == 'electron' %}
+<script type="text/javascript">
+    window.$ = window.jQuery = require('../js/lib/jquery.js')
+</script>
+{% else %}
+{{ JS.push('js/lib/jquery.js') }}
+{% endif %}
+{% endblock jquery %}
+
+{% block extra_foot_js %}
+{{ JS.push('js/lib/bootstrap.js') }}
+{{ JS.push('js/lib/html2canvas.js') }}
+{{ JS.push('js/lib/medium-editor.min.js') }}
+{{ JS.push('js/lib/moment.js') }}
+{{ JS.push('js/factlist.js') }}
+{{ JS.render('js/factlist.min.js') }}
+{% endblock extra_foot_js %}
